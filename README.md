@@ -1,105 +1,108 @@
-🚀 VectorShift Frontend Technical Assessment
+# 🚀 VectorShift - Frontend Technical Assessment
 
-Interactive Workflow Builder (ReactFlow + FastAPI)
+> An interactive workflow builder implemented with ReactFlow, Zustand, and FastAPI. This project allows users to visually design, connect, and run complex data pipelines, featuring a dynamic template-rendering engine and full backend validation.
 
-This project implements a visual workflow builder where users can drag nodes, connect them, transform data, render templates, and view a final output. The system demonstrates full-stack capability across UI engineering, state management, and backend validation.
+<img width="1426" height="577" alt="image" src="https://github.com/user-attachments/assets/3b24479d-64a4-4c9f-b347-7a9c894538d9" />
 
+
+*(**Note:** Remember to replace the image link above with a screenshot of your final project, like the color-coded one you showed me.)*
+
+---
+
+## 🔧 Tech Stack
+
+* **Frontend:** React, ReactFlow, Zustand
+* **Backend:** Python, FastAPI
+* **Styling:** Custom "Retro UI" Theme (CSS/Inline)
+* **Core Logic:** Topological Sort (for DAG validation)
+
+## 🎯 Core Features
+
+* **Visual Workflow Canvas:** Drag-and-drop interface powered by ReactFlow.
+* **Appealing "Retro UI" Theme:** A clean, color-coded, and professional design.
+* **Unified Node Abstraction:** A single `NodeBase` component ensures a unified design and allows new nodes to be created efficiently.
+* **10 Functional Nodes:**
+    * `Input`: Provides initial data.
+    * `Merge`: Combines two string inputs.
+    * `Code`: A simple expression evaluator.
+    * `Transform`: Maps input keys to output values.
+    * `Delay`: Simulates an async operation.
+    * `Banner`: Provides a static string output.
+    * `Text`: A powerful template engine that dynamically creates handles for `{{variables}}` and renders a final string.
+    * `LLM`: A mock node that previews the final prompt.
+    * `Output`: A mock node that displays the final result.
+* **Dynamic Template Hydration:** The `TextNode` automatically detects variables (including spaces, e.g., `{{Email category}}`) and pulls in data from connected nodes via a "Run" button.
+* **Full Pipeline Validation:** Submits the graph to a Python backend to count nodes/edges and verify it's a Directed Acyclic Graph (DAG).
+* **Global State Management:** Uses Zustand for a clean, hook-based approach to managing nodes, edges, and actions.
+
+## 📁 Project Structure
+
+```text
 .
-├── backend/
-│   └── main.py               # FastAPI backend (pipeline parser + DAG validation)
-│
-└── frontend/
-    ├── public/
-    ├── src/
-    │   ├── nodes/
-    │   │   ├── NodeBase.js
-    │   │   ├── inputNode.js
-    │   │   ├── textNode.js
-    │   │   ├── llmNode.js
-    │   │   ├── outputNode.js
-    │   │   └── customNodes.js   # Banner, Code, Transform, Merge, Delay
-    │   ├── store.js
-    │   ├── ui.js
-    │   ├── toolbar.js
-    │   ├── draggableNode.js
-    │   ├── submit.js
-    │   └── App.js
-    ├── index.css
-    └── index.js
+  backend/
+    main.py           # FastAPI server with /pipelines/parse endpoint
 
-⸻
+  frontend/
+    src/
+      nodes/
+        NodeBase.js       # The core node abstraction
+        inputNode.js
+        textNode.js       # Dynamic handle & template logic
+        llmNode.js
+        outputNode.js
+        customNodes.js    # Banner, Code, Merge, Transform, Delay
 
-🔧 Tech Stack
+      store.js            # Zustand global state
+      ui.js               # ReactFlow canvas wrapper
+      toolbar.js          # Draggable node toolbar
+      submit.js           # Backend API submission logic
+      App.js              # Root application
 
-Frontend: React, ReactFlow, Zustand, Custom Nodes, Retro UI Theme
-Backend: FastAPI, Topological Sort (DAG validation)
-Other: Modular architecture, clean component structure, template rendering engine
-
-⸻
-
-🎯 Core Features
-	•	Drag-and-drop workflow canvas
-	•	Eight functional custom nodes:
-	•	Input
-	•	Merge
-	•	Code (expression evaluator)
-	•	Transform (CSV mapping)
-	•	Delay
-	•	Banner
-	•	Text (template + variable resolver)
-	•	LLM (preview generator)
-	•	Output
-	•	Dynamic Text template system ({{variable}} hydration)
-	•	Fully working LLM preview flow
-	•	Pipeline submission to backend
-	•	DAG validation + structured response
-	•	Retro-styled visual node theme
-
-⸻
-
-📁 Project Structure
-backend/
-  main.py                # FastAPI pipeline parser
-
-frontend/
-  src/
-    nodes/               # All custom node implementations
-      NodeBase.js
-      inputNode.js
-      textNode.js
-      llmNode.js
-      outputNode.js
-      customNodes.js
-    store.js             # Zustand global state
-    ui.js                # Canvas + ReactFlow wrapper
-    toolbar.js           # Draggable node toolbar
-    submit.js            # API submission logic
-    App.js               # Root application
-
-▶️ Running the Project
-
-Backend
+    package.json
+    ...
+```
+## ▶️ Running the Project
+1. Backend
+First, navigate to the backend directory and start the FastAPI server.
+```text
 cd backend
 uvicorn main:app --reload
+```
 
-Frontend
+The server will be running at http://localhost:8000.
+
+2. Frontend
+In a separate terminal, navigate to the frontend directory, install dependencies, and start the React app.
+
+```text
 cd frontend
 npm install
 npm start
+```
 
+The application will open in your browser at http://localhost:3000.
 
-📌 Example Output
+## ✨ Assessment Highlights
 
-A complete connected pipeline generates a final message such as:
+Clean Node Architecture: The NodeBase abstraction (Part 1) makes adding new, styled nodes trivial.
+Robust Template Logic: The TextNode (Part 3) correctly parses variables, creates dynamic handles, and uses a "Run" button to reliably fetch and render data from all upstream sources.
+Unified & Appealing Design: The "Retro UI" theme (Part 2) creates a professional, color-coded, and unified user experience.
+End-to-End Integration: A complete, functional loop (Part 4) from the React UI to the Python backend (with a DAG check) and back to a user-friendly alert.
+
+## 📌 Example Output
+A complete connected pipeline, when "Run", generates a final rendered message in the TextNode's preview box, such as:
+
+```text
 Welcome to VectorShift!
 User: Dheeraj A
 Email category: Personal
 System ready.
+```
 
-
-✨ Highlights
-	•	Clean, modular node architecture
-	•	Well-structured UI with reusable NodeBase
-	•	Custom variable resolution logic
-	•	End-to-end frontend + backend integration
-	•	Professional UX polish with a retro theme
+When the "Submit" button is pressed, the backend integration provides an alert:
+```text
+Pipeline parsed:
+Nodes: 11
+Edges: 9
+Is DAG: true
+```
