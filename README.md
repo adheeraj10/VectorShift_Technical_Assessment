@@ -5,7 +5,6 @@
 <img width="1426" height="577" alt="image" src="https://github.com/user-attachments/assets/3b24479d-64a4-4c9f-b347-7a9c894538d9" />
 
 
-*(**Note:** Remember to replace the image link above with a screenshot of your final project, like the color-coded one you showed me.)*
 
 ---
 
