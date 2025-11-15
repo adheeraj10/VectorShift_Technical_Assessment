@@ -4,6 +4,29 @@ Interactive Workflow Builder (ReactFlow + FastAPI)
 
 This project implements a visual workflow builder where users can drag nodes, connect them, transform data, render templates, and view a final output. The system demonstrates full-stack capability across UI engineering, state management, and backend validation.
 
+.
+├── backend/
+│   └── main.py               # FastAPI backend (pipeline parser + DAG validation)
+│
+└── frontend/
+    ├── public/
+    ├── src/
+    │   ├── nodes/
+    │   │   ├── NodeBase.js
+    │   │   ├── inputNode.js
+    │   │   ├── textNode.js
+    │   │   ├── llmNode.js
+    │   │   ├── outputNode.js
+    │   │   └── customNodes.js   # Banner, Code, Transform, Merge, Delay
+    │   ├── store.js
+    │   ├── ui.js
+    │   ├── toolbar.js
+    │   ├── draggableNode.js
+    │   ├── submit.js
+    │   └── App.js
+    ├── index.css
+    └── index.js
+
 ⸻
 
 🔧 Tech Stack
